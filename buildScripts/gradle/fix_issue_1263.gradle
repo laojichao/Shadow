@@ -61,7 +61,9 @@ def copyApkAfterTask(t) {
         def needCopy = !testRelativePath.matches("^(\\.\\.${File.separatorChar})+outputs${File.separatorChar}.+")
         if (needCopy) {
             def matchPath = new File("/build/intermediates").toPath().toString()
+//            def apkFilePath = apkFile.toPath().normalize().toString()
             def intermediatesDir = new File(apkFile.toPath().normalize().toString().find("^.+?$matchPath"))
+//            def intermediatesDir = new File(apkFilePath.substring(0, apkFilePath.lastIndexOf("intermediates")))
             def outputsDir = new File(intermediatesDir.parentFile, "outputs")
             def r = copy {
                 from intermediatesDir
