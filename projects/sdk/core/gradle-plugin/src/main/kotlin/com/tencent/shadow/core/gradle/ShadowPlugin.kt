@@ -221,7 +221,10 @@ class ShadowPlugin : Plugin<Project> {
 
         // 找出ap_文件
         val processResourcesTask = agpCompat.getProcessResourcesTask(output)
-        val processedResFile = agpCompat.getProcessResourcesFile(processResourcesTask, variantName)
+        val processedResFile = File(
+            processResourcesTask.outputs.files.files.first { it.name.equals("out") },
+            "resources-$variantName.ap_"
+        )
 
         // decodeBinaryManifestTask输出的apkanalyzer manifest print结果文件
         val decodeXml = File(
